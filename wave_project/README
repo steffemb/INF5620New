@@ -1,0 +1,25 @@
+2D wave equation solved by finite differences::
+  dt, cpu_time, u = solver(I, V, f, q, Lx, Ly, Nx, Ny, dt, T,b,
+                    user_action=None, version='scalar',
+                    dt_safety_factor=1, bc = None, animate = True):
+Solve the 2D wave equation u_tt + b*ut = u_xx + u_yy + f(x,t) on (0,L) 
+can specify u=c on the boundary and initial condition du/dt=0.
+the system has reflecting boundarys du/dn = 0 if the boundary condition
+u = None is set.
+Nx and Ny are the total number of mesh cells in the x and y
+directions. The mesh points are numbered as (0,0), (1,0), (2,0),
+..., (Nx,0), (0,1), (1,1), ..., (Nx, Ny).
+dt is the time step. If dt<=0, an optimal time step is used.
+T is the stop time for the simulation.
+I, V, f are functions: I(x,y), V(x,y), f(x,y,t). V and f
+can be specified as None or 0, resulting in V=0 and f=0.
+user_action: function of (u, x, y, t, n) called at each time
+level (x and y are one-dimensional coordinate vectors).
+This function allows the calling code to plot the solution,
+compute errors, etc.
+The vectorized version is not implemented and working yet.
+
+
+
+
+ffmpeg -r 12 -i tmp_%04d.png -c:v flv movie.flv
